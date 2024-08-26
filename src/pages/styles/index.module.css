@@ -1,0 +1,17 @@
+.search_card {
+    height: 300px;
+    margin-top: 20px;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.radio_group {
+    margin-top: 10px;
+    display: flex;
+    gap: 20px;
+}
+
+.radio_group .radio_btn {
+    border-radius: 2px;
+}
