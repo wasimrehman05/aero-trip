@@ -1,10 +1,10 @@
 import React from "react";
 import Link from "next/link";
 import { OfferIcon, FlightIcon, TripIcon, SupportIcon } from "@/icons";
-import styles from "@/components/SideBar/SideBar.module.css";
+import styles from "@/components/styles/SideBar.module.css";
 import { useRouter } from "next/router";
 
-export const SideBar = () => {
+export const SideBar: React.FC = () => {
     const router = useRouter();
 
     return (

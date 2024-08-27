@@ -1,10 +1,10 @@
 "use client";
 
 import React from "react";
-import styles from "@/components/Header/Header.module.css";
-import { Button } from "../Button/Button";
+import styles from "@/components/styles/Header.module.css";
+import { Button } from "./Button";
 
-export const Header: React.FC = (img) => {
+export const Header: React.FC = () => {
     const clicked = () => {
         console.log("clicked");
     };

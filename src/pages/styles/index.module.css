@@ -6,12 +6,56 @@
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
-.radio_group {
-    margin-top: 10px;
+.input_group {
+    margin-top: 20px;
     display: flex;
-    gap: 20px;
+    align-items: center;
+    position: relative;
+    gap: 1px;
+    margin-left: calc(50% - 350px);
 }
 
-.radio_group .radio_btn {
-    border-radius: 2px;
+.input_group>div {
+    position: relative;
+}
+
+.input_group input {
+    width: 350px;
+    height: 40px;
+    font-size: large;
+    padding-left: 65px;
+    padding-right: 20px;
+    color: #2c3e50;
+    background-color: #fff;
+    border: 1px solid #152e3e65;
+}
+
+.input_group input:focus {
+    border: 1px solid transparent;
+    outline: 1px solid #2c3e50;
+}
+
+.input_group>span {
+    top: 5px;
+    left: 335px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    z-index: 1;
+    cursor: pointer;
+    position: absolute;
+    background-color: #ffffff;
+}
+
+
+.takeoff,
+.landing {
+    padding-left: 20px;
+    padding-right: 10px;
+    position: absolute;
+}
+
+.takeoff svg,
+.landing svg {
+    margin-top: 5px;
 }

@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { GetServerSideProps } from "next";
-import { RadioChangeEvent, Radio } from "antd";
 import styles from "@/pages/styles/index.module.css";
+import { LandingIcon, SwapIcon, TakeOffIcon } from "@/icons";
+import { Radio } from "@/components";
+
 
 export const getServerSideProps: GetServerSideProps = async () => {
     return {
@@ -15,32 +17,62 @@ type FareType = "regular" | "seniorCitizen" | "student" | "armedForces";
 const FlightPage: React.FC = () => {
     const [tripType, setTripType] = useState<TripType>("oneWay");
     const [fareType, setFareType] = useState<FareType>("regular");
+    const [oneWayDate, setOneWayDate] = useState<string>(() => {
+        const today = new Date();
+        const year = today.getFullYear();
+        const month = (today.getMonth() + 1).toString().padStart(2, "0");
+        const day = today.getDate().toString().padStart(2, "0");
 
-    const tripTypeChange = (e: RadioChangeEvent) => {
-        setTripType(e.target.value);
-    };
-    const fareTypeChange = (e: RadioChangeEvent) => {
-        setFareType(e.target.value);
-    };
+        return `${year}-${month}-${day}`;
+    });
+
 
     return (
-        <div style={{height: "200vh"}}>
+        <div style={{ height: "200vh" }}>
             <h1>Flight Booking</h1>
             <div className={styles.search_card}>
-                <div>
-                    <Radio.Group value={tripType} onChange={tripTypeChange}>
-                        <Radio.Button value="oneWay">One Way</Radio.Button>
-                        <Radio.Button value="roundTrip">Round Trip</Radio.Button>
-                    </Radio.Group>
+                <Radio<TripType>
+                    getValue={tripType}
+                    setValue={setTripType}
+                    data={[
+                        { value: "oneWay", label: "One Way" },
+                        { value: "roundTrip", label: "Round Trip" },
+                    ]}
+                />
+                <div className={styles.input_group}>
+                    <div>
+                        <span className={styles.takeoff}>
+                            <TakeOffIcon />
+                        </span>
+                        <input
+                            placeholder="Country, city or airport"
+                            type="text"
+                        />
+                    </div>
+                    <span>
+                        <SwapIcon />
+                    </span>
+                    <div>
+                        <span className={styles.landing}>
+                            <LandingIcon />
+                        </span>
+                        <input
+                            placeholder="Country, city or airport"
+                            type="text"
+                        />
+                    </div>
                 </div>
-                <div>
-                    <Radio.Group className={styles.radio_group} value={fareType} onChange={fareTypeChange}>
-                        <Radio.Button className={styles.radio_btn} value="regular">Regular</Radio.Button>
-                        <Radio.Button className={styles.radio_btn} value="seniorCitizen">Senior Citizen</Radio.Button>
-                        <Radio.Button className={styles.radio_btn} value="student">Student</Radio.Button>
-                        <Radio.Button className={styles.radio_btn} value="armedForces">Armed Forces</Radio.Button>
-                    </Radio.Group>
-                </div>
+                
+                <Radio<FareType>
+                    getValue={fareType}
+                    setValue={setFareType}
+                    data={[
+                        { value: "regular", label: "Regular" },
+                        { value: "seniorCitizen", label: "Senior Citizen" },
+                        { value: "student", label: "Student" },
+                        { value: "armedForces", label: "Armed Forces" },
+                    ]}
+                />
             </div>
         </div>
     );

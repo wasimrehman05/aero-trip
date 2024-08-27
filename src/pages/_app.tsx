@@ -1,9 +1,7 @@
 import Head from "next/head";
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
-import { Header } from "@/components/Header/Header";
-import { Footer } from "@/components/Footer/Footer";
-import { SideBar } from "@/components/SideBar/SideBar";
+import { Header, Footer, SideBar } from "@/components";
 import "@/app/globals.css";
 
 
