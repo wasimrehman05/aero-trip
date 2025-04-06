@@ -4,7 +4,6 @@ import { useRouter } from "next/router";
 import { Header, Footer, SideBar } from "@/components";
 import "@/app/globals.css";
 
-
 function MyApp({ Component, pageProps }: AppProps) {
     const router = useRouter();
     const currentRoute =

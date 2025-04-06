@@ -1,26 +1,29 @@
 .search_card {
-    height: 300px;
+    margin: auto;
     margin-top: 20px;
     padding: 30px;
+    padding-top: 40px;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    max-width: 761px;
 }
 
 .input_group {
-    margin-top: 20px;
+    margin-top: 30px;
     display: flex;
     align-items: center;
     position: relative;
     gap: 1px;
-    margin-left: calc(50% - 350px);
+    /* margin-left: calc(50% - 350px); */
 }
 
 .input_group>div {
     position: relative;
+    width: 50%;
 }
 
 .input_group input {
-    width: 350px;
+    width: 100%;
     height: 40px;
     font-size: large;
     padding-left: 65px;
@@ -37,7 +40,7 @@
 
 .input_group>span {
     top: 5px;
-    left: 335px;
+    left: 47.9%;
     width: 30px;
     height: 30px;
     border-radius: 50%;
@@ -58,4 +61,29 @@
 .takeoff svg,
 .landing svg {
     margin-top: 5px;
+}
+
+.landing svg {
+    margin-left: 5px;
+}
+
+@media (max-width: 1000px) {
+    .input_group>span {
+        left: 47.5%;
+    }
+}
+@media (max-width: 920px) {
+    .input_group>span {
+        left: 47.3%;
+    }
+}
+@media (max-width: 860px) {
+    .input_group>span {
+        left: 47%;
+    }
+}
+@media (max-width: 808px) {
+    .input_group>span {
+        left: 46.8%;
+    }
 }

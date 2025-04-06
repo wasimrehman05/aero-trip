@@ -12,7 +12,7 @@ export const SideBar: React.FC = () => {
             <ul>
                 <li className={router.pathname === "/" ? styles.active : undefined}>
                     <FlightIcon />
-                    <Link href={"/"}>Fight</Link>
+                    <Link href={"/"}>Fights</Link>
                 </li>
                 <li className={router.pathname === "/offers" ? styles.active : undefined}>
                     <OfferIcon />
