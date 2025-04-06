@@ -57,9 +57,7 @@ const FlightPage: React.FC = () => {
     }, [tripType]);
 
     return (
-        <div 
-        // style={{ height: "70vh" }}
-        >
+        <div>
             <div className={styles.search_card}>
                 <div className="flex items-center justify-between">
                     <Radio<TripType>

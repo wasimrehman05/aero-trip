@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { TravellingType, ClassType } from "@/pages/index" 
+import { TravelingType, ClassType } from "@/pages/index" 
 import {
     Dialog,
     DialogTitle,
@@ -11,8 +11,8 @@ import {
 import { Radio } from "./Radio";
 
 interface DialogBoxProps {
-    dialogValue: TravellingType;
-    setDialogValue: (value: TravellingType) => void;
+    dialogValue: TravelingType;
+    setDialogValue: (value: TravelingType) => void;
 }
 
 export const DialogBox: React.FC<DialogBoxProps> = ({ dialogValue, setDialogValue }) => {
@@ -24,7 +24,7 @@ export const DialogBox: React.FC<DialogBoxProps> = ({ dialogValue, setDialogValu
 
     const updateTraveller = (
         value: number,
-        key: keyof Omit<TravellingType, "class">
+        key: keyof Omit<TravelingType, "class">
     ) => {
         setDialogValue({ ...dialogValue, [key]: value });
     };
@@ -38,10 +38,10 @@ export const DialogBox: React.FC<DialogBoxProps> = ({ dialogValue, setDialogValu
                 : "1 Adult, "
         }`;
         text += `${
-            dialogValue.childern === 0
+            dialogValue.children === 0
                 ? ""
-                : dialogValue.childern > 1
-                ? dialogValue.childern + " Childern, "
+                : dialogValue.children > 1
+                ? dialogValue.children + " children, "
                 : "1 Child, "
         }`;
         text += `${
@@ -90,8 +90,8 @@ export const DialogBox: React.FC<DialogBoxProps> = ({ dialogValue, setDialogValu
                         <input
                             className="bg-white border border-black text-center pl-1 rounded"
                             type="number"
-                            value={dialogValue.childern}
-                            onChange={(e) => updateTraveller( parseInt(e.target.value), "childern")}
+                            value={dialogValue.children}
+                            onChange={(e) => updateTraveller( parseInt(e.target.value), "children")}
                             min={0}
                             max={7}
                         />
