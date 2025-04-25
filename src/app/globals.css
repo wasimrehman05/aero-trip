@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap&text=₹');
 
 @tailwind base;
 @tailwind components;
@@ -12,7 +13,7 @@
         "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
         "Fira Mono", "Droid Sans Mono", "Courier New", monospace; */
     
-    --font-mono: "PT Sans", sans-serif;
+    --font-mono: 'Noto Sans', 'PT Sans', sans-serif;
 
     --foreground-rgb: 0, 0, 0;
     --background-start-rgb: 214, 219, 220;
@@ -86,7 +87,7 @@ body {
 }
 
 body {
-    background: #ffffff;
+    background: #EFEFF0;
     font-family: var(--font-mono);
 }
 
@@ -102,18 +103,14 @@ body {
     margin: auto;
     display: flex;
     justify-content: space-between;
+    position: relative;
 }
 
 .side_tab {
-    position: -webkit-sticky; 
-    position: sticky;
     top: 70px;
-    /* height: calc(100vh - 309px);
-    min-height: fit-content; */
-    overflow-y: auto;
+    height: auto;
     width: 250px; 
     padding: 1rem;
-    border: 1px solid red;
     margin-bottom: 245px;
 }
 
@@ -122,7 +119,6 @@ body {
     padding: 1rem;
     margin-left: 1rem; 
     width: calc(100% - 260px); 
-    border: 1px solid gray;
     margin-bottom: 245px;
 }
 

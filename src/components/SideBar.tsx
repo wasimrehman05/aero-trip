@@ -1,8 +1,8 @@
 import React from "react";
 import Link from "next/link";
-import { OfferIcon, FlightIcon, TripIcon, SupportIcon } from "@/icons";
-import styles from "@/components/styles/SideBar.module.css";
 import { useRouter } from "next/router";
+import styles from "@/components/styles/SideBar.module.css";
+import { OfferIcon, FlightIcon, TripIcon, SupportIcon } from "@/icons";
 
 export const SideBar: React.FC = () => {
     const router = useRouter();

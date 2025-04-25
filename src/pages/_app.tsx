@@ -2,6 +2,7 @@ import Head from "next/head";
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import { Header, Footer, SideBar } from "@/components";
+import { AppProvider } from "@/context/AppContext";
 import "@/app/globals.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -17,7 +18,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     const titleName = `${currentRoute} - Aero Trip`;
 
     return (
-        <>
+        <AppProvider>
             <Head>
                 <title>{titleName}</title>
                 <meta
@@ -35,7 +36,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                 </div>
             </main>
             <Footer />
-        </>
+        </AppProvider>
     );
 }
 

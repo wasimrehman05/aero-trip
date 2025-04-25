@@ -1,7 +1,14 @@
 .sidebar {
-    padding-top: 50px;
+    position: sticky;
+    position: -webkit-sticky; 
+    margin-top: 20px;
+    padding: 30px 15px 10px;
+    border-radius: 10px;
     width: 220px;
-    height: 100%;
+    height: auto;
+    max-height: calc(100vh - 150px);
+    overflow-y: auto;
+    background: #ffffff;
 }
 
 .sidebar ul {
@@ -26,4 +33,15 @@
 
 .sidebar li.active{
     background-color: #152e3e65;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.sidebar::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.sidebar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
 }

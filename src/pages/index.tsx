@@ -1,8 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { GetServerSideProps } from "next";
 import styles from "@/pages/styles/index.module.css";
 import { SwapIcon } from "@/icons";
 import { Radio, DatePicker, DialogBox, LocationInput } from "@/components";
+import { Button } from "@/components/ui/button";
+import { LocationSuggestion } from "@/components/LocationInput";
+import { searchFlight } from "@/services/searchFlight";
+import { FlightList } from "@/components/FlightList";
+import { AppContext } from "@/context/AppContext";
 
 export const getServerSideProps: GetServerSideProps = async () => {
     return { props: {} };
@@ -29,8 +34,16 @@ const dateFormat = (date: Date): string => {
 
     return `${year}-${month}-${day}`;
 };
-
 const FlightPage: React.FC = () => {
+    const {
+        flightResults,
+        setFlightResults,
+        error,
+        setError,
+        isLoading,
+        setIsLoading
+    } = useContext(AppContext);
+
     const [tripType, setTripType] = useState<TripType>("oneWay");
     const [fareType, setFareType] = useState<FareType>("regular");
     const [oneWayDate, setOneWayDate] = useState<Date | null>(new Date());
@@ -41,14 +54,34 @@ const FlightPage: React.FC = () => {
         infants: 0,
         class: "economy",
     });
-    const [fromLocation, setFromLocation] = useState("");
-    const [toLocation, setToLocation] = useState("");
+    const [fromLocation, setFromLocation] = useState<LocationSuggestion | null>(null);
+    const [toLocation, setToLocation] = useState<LocationSuggestion | null>(null);
 
-    const handleLocationInput = async (name: string, value: string) => {
+    const handleLocationInput = async (
+        name: string,
+        location: LocationSuggestion
+    ) => {
         if (name === "from") {
-            setFromLocation(value);
+            setFromLocation(location);
         } else if (name === "to") {
-            setToLocation(value);
+            setToLocation(location);
+        }
+    };
+    
+    const handleSearch = async () => {
+        setError("");
+        setIsLoading(true);
+
+        try {
+            let response = await searchFlight();
+            if (response?.itineraries?.results.length > 0) {
+                setFlightResults(response?.itineraries?.results);
+            }
+        } catch (error) {
+            setError("Failed to fetch flight results. Please try again.");
+            console.error("Error fetching flights:", error);
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -56,9 +89,18 @@ const FlightPage: React.FC = () => {
         setReturnDate(null);
     }, [tripType]);
 
+
     return (
         <div>
-            <div className={styles.search_card}>
+            <div
+                className={styles.search_card}
+                style={{ paddingTop: error ? "10px" : "44px" }}
+            >
+                {error && (
+                    <p className="mb-[10px] text-red-500 text-sm mt-1">
+                        {error}
+                    </p>
+                )}
                 <div className="flex items-center justify-between">
                     <Radio<TripType>
                         getValue={tripType}
@@ -79,7 +121,7 @@ const FlightPage: React.FC = () => {
                         name="from"
                         iconAction="takeoff"
                         onChange={handleLocationInput}
-                        value={fromLocation}
+                        value={fromLocation?.location || ""}
                     />
                     <span>
                         <SwapIcon />
@@ -89,7 +131,7 @@ const FlightPage: React.FC = () => {
                         name="to"
                         iconAction="landing"
                         onChange={handleLocationInput}
-                        value={toLocation}
+                        value={toLocation?.location || ""}
                     />
                 </div>
 
@@ -110,16 +152,37 @@ const FlightPage: React.FC = () => {
                     />
                 </div>
 
-                <Radio<FareType>
-                    getValue={fareType}
-                    setValue={setFareType}
-                    data={[
-                        { value: "regular", label: "Regular" },
-                        { value: "seniorCitizen", label: "Senior Citizen" },
-                        { value: "student", label: "Student" },
-                        { value: "armedForces", label: "Armed Forces" },
-                    ]}
-                />
+                <div className="flex items-center justify-between">
+                    <Radio<FareType>
+                        getValue={fareType}
+                        setValue={setFareType}
+                        data={[
+                            { value: "regular", label: "Regular" },
+                            { value: "seniorCitizen", label: "Senior Citizen" },
+                            { value: "student", label: "Student" },
+                            { value: "armedForces", label: "Armed Forces" },
+                        ]}
+                    />
+                    <Button
+                        className="bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-md"
+                        onClick={handleSearch}
+                    >
+                        Search Flights
+                    </Button>
+                </div>
+            </div>
+            <div className="flight-results-container">
+                {isLoading ? (
+                    <div className="flex justify-center items-center py-8 m-4">
+                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+                    </div>
+                ) : flightResults && flightResults.length > 0 ? (
+                    <FlightList results={flightResults} />
+                ) : (
+                    <div className="text-center py-8 text-gray-600">
+                        {error || "Search for flights to see results"}
+                    </div>
+                )}
             </div>
         </div>
     );

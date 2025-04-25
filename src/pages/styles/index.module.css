@@ -1,11 +1,10 @@
 .search_card {
-    margin: auto;
+    margin: auto 20px;
     margin-top: 20px;
     padding: 30px;
-    padding-top: 40px;
     border-radius: 10px;
+    background: #ffffff;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-    max-width: 761px;
 }
 
 .input_group {
@@ -25,7 +24,7 @@
 .input_group input {
     width: 100%;
     height: 40px;
-    font-size: large;
+    font-size: 15px;
     padding-left: 65px;
     padding-right: 20px;
     color: #2c3e50;
@@ -86,4 +85,10 @@
     .input_group>span {
         left: 46.8%;
     }
+}
+
+.flight-results-container {
+    max-width: 761px;
+    margin: 0 auto;
+    padding: 0 1rem;
 }

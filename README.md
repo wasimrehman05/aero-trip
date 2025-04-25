@@ -1,39 +1,74 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Aero Trip
 
-## Getting Started
+A flight search application built with Next.js and Python.
 
-First, run the development server:
+## Project Structure
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+This project is structured as a monorepo with both frontend and backend components:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- `src/` - Next.js frontend application
+- `api/` - Python Flask backend API
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Local Development
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Prerequisites
 
-## Learn More
+- Node.js 18+ and npm
+- Python 3.8+
 
-To learn more about Next.js, take a look at the following resources:
+### Setup
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Install frontend dependencies:
+   ```bash
+   npm install
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+2. Install Python dependencies:
+   ```bash
+   pip install -r api/requirements.txt
+   ```
 
-## Deploy on Vercel
+3. Start the development servers:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   For the frontend:
+   ```bash
+   npm run dev
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+   For the backend (in a separate terminal):
+   ```bash
+   python api/index.py
+   ```
+
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## Deployment to Vercel
+
+This project is configured for easy deployment to Vercel as a monorepo.
+
+1. Push your code to a GitHub repository.
+
+2. Connect your repository to Vercel:
+   - Go to [Vercel](https://vercel.com)
+   - Click "New Project"
+   - Import your GitHub repository
+   - Vercel will automatically detect the project structure and configure the build settings
+
+3. Deploy:
+   - Vercel will automatically build and deploy your project
+   - The frontend will be deployed to a production URL
+   - The API will be deployed as serverless functions
+
+## How It Works
+
+- The frontend is a Next.js application that makes API calls to the backend
+- The backend is a Python Flask API that proxies requests to Skyscanner
+- In development, the frontend and backend run on separate ports
+- In production, everything is deployed as a single application on Vercel
+
+## Environment Variables
+
+No environment variables are required for basic functionality, but you can add them in the Vercel dashboard if needed.
 
 # Aero-Trip
 
